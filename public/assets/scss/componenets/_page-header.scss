@@ -1,0 +1,79 @@
+/*
+-----------------------------------------------------------------------
+  Page Header CSS
+-----------------------------------------------------------------------
+*/
+
+
+.page-header-area {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top right;
+  padding: 119px 0 122px;
+  @media #{$lg-device} {
+    background-position: top left;
+    padding: 75px 0 78px;
+  }
+}
+
+.page-header-content {
+  text-align: left;
+  .title {
+    font-weight: $font-weight-extra-bold;
+    text-transform: capitalize;
+    font-size: 48px;
+    letter-spacing: 0;
+    margin: 0 0 22px 0;
+    line-height: 1;
+    @media #{$lg-device} {
+      font-size: 36px;
+      margin: 0 0 14px 0;
+    }
+    @media #{$sm-device} {
+      font-size: 32px;
+      margin: 0 0 12px 0;
+    }
+  }
+}
+
+.breadcrumb-area {
+  margin-bottom: 0;
+
+  .breadcrumb {
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: unset;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-bottom: 0;
+    padding: 0;
+
+    li {
+      color: $theme-color;
+      font-size: 16px;
+      font-weight: $font-weight-semi-bold;
+      line-height: 1;
+      letter-spacing: 0.40px;
+      text-transform: uppercase;
+      @media #{$lg-device} {
+        font-size: 14px;
+      }
+      a {
+        color: #0b0b0b;
+
+        &:hover {
+          color: $theme-color;
+        }
+      }
+    }
+
+    .breadcrumb-sep {
+      margin: 0 7px 0 9px;
+      vertical-align: 0;
+    }
+  }
+}

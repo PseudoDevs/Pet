@@ -1,0 +1,74 @@
+/*
+-----------------------------------------------------------------------
+  Countdown CSS
+-----------------------------------------------------------------------
+*/
+
+.ht-countdown {}
+.ht-countdown-wrap {
+  align-items: center;
+  background-color: $theme-color2;
+  border-radius: 0 50px 50px 0;
+  display: flex;
+  width: fit-content;
+  margin-bottom: 23px;
+  padding: 7px 16px 6px 17px;
+  @media #{$lg-device} {
+    margin-bottom: 13px;
+  }
+  .countdown-title {
+    color: $theme-color;
+    font-size: 16px;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    margin-right: 10px;
+    display: inline-block;
+    @media #{$lg-device} {
+      font-size: 13px;
+    }
+  }
+}
+.ht-countdown-style1 {
+  align-items: center;
+  display: flex;
+  .countdown-item {
+    position: relative;
+    line-height: 1;
+    margin: 0 7.5px;
+    &:after {
+      content: ":";
+      color: $theme-color;
+      font-size: 16px;
+      font-weight: $font-weight-semi-bold;
+      display: inline-block;
+      position: absolute;
+      right: -9px;
+      top: calc(50% - 1px);
+      line-height: 1;
+      vertical-align: middle;
+      transform: translate(0px, -50%);
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+      &:after {
+        display: none;
+      }
+    }
+
+    &__time {
+      color: $theme-color;
+      font-size: 16px;
+      font-weight: $font-weight-semi-bold;
+      line-height: 1;
+      @media #{$lg-device} {
+        font-size: 14px;
+      }
+    }
+    &__label {
+      display: none;
+    }
+  }
+} 

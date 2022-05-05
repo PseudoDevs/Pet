@@ -1,0 +1,81 @@
+/*
+-----------------------------------------------------------------------
+  Team CSS
+-----------------------------------------------------------------------
+*/
+
+.team-item {
+  margin-bottom: 30px;
+  .thumb {
+    overflow: hidden;
+    position: relative;
+    img {
+      width: 100%;
+      @include transition(all .3s ease-out);
+    }
+  }
+  .content {
+    margin-top: 37px;
+    text-align: center;
+    @media #{$lg-device} {
+      margin-top: 18px;
+    }
+    .title {
+      color: $black;
+      font-size: 24px;
+      line-height: 1;
+      font-weight: $font-weight-semi-bold;
+      margin-bottom: 11px;
+      @media #{$lg-device} {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+    }
+    p {
+      color: $black;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: $font-weight-semi-bold;
+      margin-bottom: 0;
+      @media #{$lg-device} {
+        font-size: 15px;
+      }
+    }
+  }
+  .member-icons {
+    background-color: #fff;
+    bottom: 12px;
+    right: -20%;
+    opacity: 0;
+    display: flex;
+    line-height: 1;
+    position: absolute;
+    padding: 0 22px;
+    @include transition(all .3s ease-out);
+    a {
+      color: $theme-color;
+      font-size: 16px;
+      height: 43px;
+      line-height: 46px;
+      + {
+        a {
+          margin-left: 25px;
+        }
+      }
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+  &:hover {
+    .thumb {
+      img {
+        @include scale(1.05);
+      }
+    }
+    .member-icons {
+      opacity: 1;
+      right: 0;
+    }
+  }
+}

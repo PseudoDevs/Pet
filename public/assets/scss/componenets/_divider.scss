@@ -1,0 +1,255 @@
+/*
+-----------------------------------------------------------------------
+  Divider CSS
+-----------------------------------------------------------------------
+*/
+
+.divider {
+  &-style1 {
+    .divider-thumb {
+      display: inline-block;
+      height: 100%;
+      position: relative;
+      @include select-none(none);
+      width: 100%;
+      z-index: 1;
+      @media #{$md-device} {
+        display: none;
+      }
+      img {
+        pointer-events: none;
+        position: absolute;
+        width: auto;
+        @media #{$xl-device} {
+          width: 240px;
+        }
+      }
+      &-left {
+        img {
+          bottom: 19px;
+          right: calc(50% - 163px);
+          @media #{$xl-device} {
+            right: calc(50% - 92px);
+          }
+        }
+      }
+      &-right {
+        img {
+          bottom: 32px;
+          right: 36px;
+        }
+      }
+      .shape-circle {
+        background-color: $theme-color2;
+        clip-path: polygon(0 0, 78% 0, 100% 100%, 0 100%);
+        -webkit-clip-path: polygon(0 0, 78% 0, 100% 100%, 0 100%);
+        height: 100%;
+        position: absolute;
+        width: calc(100% + 41px);
+        z-index: -1;
+        @media #{$md-device} {
+          display: none;
+        }
+      }
+    }
+    .divider-content {
+      max-width: 454px;
+      margin: 0 auto;
+      position: relative;
+      padding: 120px 0 126px;
+      z-index: 1;
+      @media #{$xl-device} {
+        padding: 80px 0 86px;
+      }
+      .sub-title {
+        color: $theme-color2;
+        font-size: 18px;
+        font-weight: $font-weight-semi-bold;
+        letter-spacing: 3px;
+        line-height: 1;
+        margin-bottom: 13px;
+        text-transform: uppercase;
+        @media #{$lg-device} {
+          font-size: 15px;
+          margin-bottom: 8px;
+        }
+      }
+      .title {
+        color: $white;
+        font-size: 48px;
+        @media #{$xl-device} {
+          font-size: 42px;
+        }
+        @media #{$lg-device} {
+          font-size: 38px;
+          margin-bottom: 4px;
+        }
+        @media #{$xs-device} {
+          font-size: 34px;
+        }
+      }
+      .desc {
+        color: $white;
+        font-size: 18px;
+        line-height: 1.56;
+        margin-bottom: 45px;
+        @media #{$xl-device} {
+          margin-bottom: 24px;
+        }
+        @media #{$lg-device} {
+          font-size: 15px;
+        }
+      }
+      .btn-theme {}
+      .shape-object {
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        @include translate(-50%, -50%);
+        @media #{$lg-device} {
+          width: 240px;
+        }
+      }
+    }
+  }
+  &-style2 {
+    @media #{$lg-device} {
+      align-items: center;
+    }
+    @media #{$md-device} {
+      padding: 50px 0 83px;
+    }
+    .divider-thumb {
+      position: relative;
+      height: 100%;
+      @include select-none(none);
+      img {
+        max-width: none;
+        float: right;
+        position: absolute;
+        left: -12px;
+        bottom: -110px;
+        @include select-none(none);
+        @media #{$lg-device} {
+          position: relative;
+          left: 0;
+          bottom: 0;
+          max-width: 100%;
+          float: none;
+        }
+      }
+    }
+    .divider-content {
+      max-width: 454px;
+      margin: 0 0 0 70px;
+      position: relative;
+      padding: 121px 0 125px;
+      z-index: 1;
+      @media #{$lg-device} {
+        margin: 0 0 0 40px;
+      }
+      @media #{$md-device} {
+        padding: 0;
+        margin: 40px 0 0 28px;
+      }
+      .sub-title {
+        color: $theme-color2;
+        font-size: 18px;
+        font-weight: $font-weight-semi-bold;
+        letter-spacing: 3px;
+        line-height: 1;
+        margin-bottom: 13px;
+        text-transform: uppercase;
+        @media #{$lg-device} {
+          font-size: 15px;
+          margin-bottom: 10px;
+        }
+      }
+      .title {
+        color: $white;
+        font-size: 48px;
+        @media #{$lg-device} {
+          font-size: 38px;
+        }
+        @media #{$xs-device} {
+          font-size: 33px;
+        }
+      }
+      .desc {
+        color: $white;
+        font-size: 18px;
+        line-height: 1.56;
+        margin-bottom: 45px;
+        @media #{$lg-device} {
+          font-size: 15px;
+          margin-bottom: 25px;
+        }
+      }
+      .btn-theme {}
+    }
+  }
+}
+
+.isotope-filter {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+  @media #{$lg-device} {
+    margin-bottom: 32px;
+  }
+  @media #{$xxs-device} {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  button {
+    border-radius: 50px;
+    border: 2px dashed transparent;
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+    box-shadow: none;
+    outline: none;
+    margin: 0 2px;
+    padding: 8px 19px 7px;
+    @include transition(all .3s ease-out);
+    @media #{$md-device} {
+      font-size: 13px;
+      margin: 0;
+      padding: 6px 18px 5px;
+    }
+    @media #{$xs-device} {
+      font-size: 12px;
+    }
+    @media #{$xxs-device} {
+      border: 2px dashed #eee;
+      display: block;
+      margin: 0 3px 10px;
+      width: 47.77%;
+    }
+    &.active {
+      border-color: $theme-color;
+    }
+    &:hover {
+      color: $theme-color;
+    }
+  }
+  &-style2 {
+    @media #{$sm-device} {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    button {
+      @media #{$sm-device} {
+        font-size: 12px;
+        border: 2px dashed #eee;
+        display: block;
+        margin: 0 3px 10px;
+        width: 47.77%;
+      }
+    }
+  }
+}

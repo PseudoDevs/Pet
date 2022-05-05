@@ -1,0 +1,63 @@
+/*
+-----------------------------------------------------------------------
+    Feature CSS
+-----------------------------------------------------------------------
+*/
+
+.feature-area {
+  border-top: 1px solid #d7d7d7;
+  .container {
+    padding-bottom: 60px;
+    padding-top: 57px;
+    @media #{$lg-device} {
+      padding-bottom: 45px;
+      padding-top: 57px;
+    }
+    @media #{$md-device} {
+      padding-bottom: 27px;
+    }
+  }
+}
+
+.feature-style2-area {
+  border-top: 0;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.feature-icon-box {
+  display: flex;
+  @media #{$md-device} {
+    margin-bottom: 30px;
+  }
+  .icon-box {
+    padding-top: 7px;
+    @media #{$lg-device} {
+      padding-top: 5px;
+    }
+    img {
+      @media #{$lg-device} {
+        width: 40px;
+      }
+    }
+  }
+  .content {
+    padding-left: 20px;
+    @media #{$lg-device} {
+      padding-left: 10px;
+    }
+    .title {
+      color: #2e2e2e;
+      font-size: 24px;
+      font-weight: $font-weight-semi-bold;
+      line-height: 1;
+      margin-bottom: 10px;
+      @media #{$lg-device} {
+        font-size: 20px;
+      }
+    }
+    p {
+      color: #848484;
+      line-height: 1;
+    }
+  }
+}

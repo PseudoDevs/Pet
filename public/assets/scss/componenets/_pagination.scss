@@ -1,0 +1,59 @@
+/*
+-----------------------------------------------------------------------
+  Pagination CSS
+-----------------------------------------------------------------------
+*/
+
+.pagination-items {
+  margin-top: 32px;
+  margin-bottom: 30px;
+  & .pagination {
+    & li {
+      display: inline-block;
+
+      + {
+        li {
+          margin-left: 10px;
+        }
+      }
+
+      & a {
+        background-color: transparent;
+        border: 1px solid $theme-color;
+        border-radius: 5px;
+        color: #d5d5d5;
+        display: inline-block;
+        font-size: 18px;
+        font-weight: $font-weight-bold;
+        height: 40px;
+        line-height: 39px;
+        @include transition(0.3s);
+        text-align: center;
+        width: 40px;
+
+        &.active {
+          background-color: $theme-color;
+          border-color: $theme-color;
+          color: $white;
+        }
+
+        &:hover {
+          background-color: $theme-color;
+          border-color: $theme-color;
+          color: $white;
+        }
+        &.icon {
+          color: #9e9e9e;
+          font-size: 23px;
+          line-height: 37px;
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+  &.pagination-items-style1 {
+    margin-top: 47px;
+  }
+}

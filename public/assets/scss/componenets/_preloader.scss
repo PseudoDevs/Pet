@@ -1,0 +1,52 @@
+/*
+-----------------------------------------------------------------------
+  Preloader CSS
+-----------------------------------------------------------------------
+*/
+
+.preloader-deactive {
+  .preloader-wrap {
+    display: none;
+  }
+}
+
+.preloader-wrap {
+  background-color: $white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 99999;
+  overflow: hidden;
+
+  .preloader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+  }
+  .dog-head {
+    background-image: url('../img/preloader/dog-head-md.webp');
+    height: 118px;
+    left: 8px;
+    position: absolute;
+    width: 130px;
+    @include animation(head-move 1s ease-in-out infinite);
+    @include transform(translate(5px, 5px) rotate(1.5deg));
+    top: -35px;
+    z-index: 2;
+  }
+  .dog-body {
+    background-repeat: no-repeat;
+    background-image: url('../img/preloader/dog-body-md.webp');
+    height: 150px;
+    width: 160px;
+  }
+}
+
+@-webkit-keyframes head-move {
+  50% { 
+    -webkit-transform: rotate(-1.5deg); 
+  }
+}

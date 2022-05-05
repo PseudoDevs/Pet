@@ -1,0 +1,61 @@
+/*
+-----------------------------------------------------------------------
+  About CSS
+-----------------------------------------------------------------------
+*/
+
+.about-inner-area {
+  .container {
+    padding-top: 124px;
+    padding-bottom: 120px;
+    @media #{$lg-device} {
+      padding-top: 74px;
+      padding-bottom: 72px;
+    }
+    @media #{$md-device} {
+      padding-top: 78px;
+      padding-bottom: 53px;
+    }
+  }
+}
+
+.about-thumb {
+  width: 100%;
+  @media #{$md-device} {
+    margin-bottom: 40px;
+  }
+}
+
+.about-content {
+  margin-top: 10px;
+  @media #{$md-device} {
+    margin-bottom: 30px;
+  }
+  .section-title {
+    margin-bottom: 58px;
+    @media #{$lg-device} {
+      margin-bottom: 18px;
+    }
+  }
+  p {
+    margin-right: -2px;
+    @media #{$lg-device} {
+      margin-bottom: 18px;
+    }
+  }
+  .btn-theme {
+    margin-top: 19px;
+  }
+}
+
+.about-item-style2 {
+  .about-thumb {
+    margin-top: -35px;
+    @media #{$lg-device} {
+      margin-top: 0;
+    }
+  }
+  .about-content {
+    margin-right: -5px;
+  }
+}

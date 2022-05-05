@@ -1,0 +1,73 @@
+/*
+-----------------------------------------------------------------------
+  Testimonial CSS
+-----------------------------------------------------------------------
+*/
+
+.testimonial-item {
+  border-radius: 10px;
+  background-color: $white;
+  box-shadow: 0px 1px 31.28px 14.72px rgba($black, .08);
+  margin-bottom: 30px;
+  padding: 40px 15px 15px 30px;
+  .testi-author {
+    display: flex;
+    margin-bottom: 32px;
+    @media #{$lg-device} {
+      margin-bottom: 18px;
+    }
+    .testi-thumb {}
+    .testi-info {
+      padding-top: 6px;
+      padding-left: 20px;
+      .title {
+        color: $black;
+        font-size: 18px;
+        font-weight: $font-weight-semi-bold;
+        line-height: 1;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        @media #{$lg-device} {
+          font-size: 16px;
+        }
+      }
+      .sub-title {
+        color: $black;
+        font-size: 18px;
+        font-weight: $font-weight-normal;
+        line-height: 1;
+        text-transform: capitalize;
+        margin-bottom: 14px;
+        @media #{$lg-device} {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  .rating-box {
+    color: #ffde00;
+    display: flex;
+    font-size: 14px;
+    i {
+      + {
+        i {
+          margin-left: 6px;
+        }
+      }
+    }
+  }
+  .desc {
+    color: #434343;
+    font-size: 18px;
+    font-weight: $font-weight-normal;
+    font-style: italic;
+    line-height: 1.73;
+    margin-bottom: 11px;
+    @media #{$lg-device} {
+      font-size: 15px;
+    }
+  }
+  .testi-quote {
+    text-align: right;
+  }
+}
