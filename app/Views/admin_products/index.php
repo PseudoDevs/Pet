@@ -40,17 +40,19 @@ echo view('layouts/sidenav');
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php foreach($products as $product): ?>
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>₱ 521.00</td>
+                                                <td><?= $product['p_name'] ?></td>
+                                                <td><img src="/uploads/<?= $product['p_thumbnail'] ?>" class="img-fluid" height="100" width="100"></td>
+                                                <td><?= $product['p_stocks'] ?></td>
+                                                <td>₱ <?= $product['p_price'] ?></td>
                                                 <td>
-                                                    <button type="button" data-toggle="modal" data-target="#edit" class="btn btn-success btn-sm">Edit</button>
-                                                    <button type="button" data-toggle="modal" data-target="#delete" class="btn btn-danger btn-sm">Delete</button>
-                                                    <button type="button" data-toggle="modal" data-target="#view" class="btn btn-secondary btn-sm">View</button>
+                                                    <button type="button" data-toggle="modal" data-id="<?= $product['id'] ?>" data-target="#edit"  class="btn btn-success btn-sm edit_p">Edit</button>
+                                                    <button type="button" data-toggle="modal" data-id="<?= $product['id'] ?>" data-target="#delete" class="btn btn-danger btn-sm delete_p">Delete</button>
+                                                    <button type="button" data-toggle="modal" data-id="<?= $product['id'] ?>" data-target="#view" class="btn btn-secondary btn-sm view_p">View</button>
                                                 </td>
                                             </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -68,3 +70,82 @@ echo view('admin_products/edit');
 echo view('admin_products/view');
 
 ?>
+
+<script>
+
+    
+// function refreshTable() {
+//             $.get("/fetch-official-roles", function(data, status) {
+//                 $('.dataTable').DataTable().clear().destroy();
+//                 $('.dataTable').find("tbody").empty();
+//                 $('.dataTable tbody').append(data);
+//                 var table = $("dataTable").DataTable();
+
+//             });
+//         }
+
+//         $(document).ready(function() {
+//             $.get("/fetch-official-roles", function(data, status) {
+//                 $('.dataTable').DataTable().clear().destroy();
+//                 $('.dataTable').find("tbody").empty();
+//                 $('.dataTable tbody').append(data);
+//                 var table = $(".dataTable").DataTable();
+
+//             });
+
+//         });
+
+var isSomethingTrue = true;
+        $(".dataTable").on('click', '.delete_p', function() {
+            var id = $(this).data('id');
+            $("#deleteProducts").click(function() {
+                if (isSomethingTrue) {
+                    $.get("/delete-product/" + id, {
+                            id: id,
+                        },
+                        function(data, status) {
+                            alert("Product Deleted Successfully");
+                            location.reload();
+                        });
+                } else {
+                    console.log("Error Deleting Role!");
+                }
+            });
+        });
+
+
+        $(".dataTable").on('click', '.edit_p', function() {
+
+            var id = $(this).data('id');
+
+            $.get("/view-product/" + id, function(data, status) {
+                const result = JSON.parse(data);
+                $('#productIdEdit').val(result.id);
+                $('#p_name').val(result.p_name);
+                $('#p_desc').val(result.p_description);
+                $('#p_price').val(result.p_price);
+                $('#p_stocks').val(result.p_stocks);
+                // $('#p_thumbnail').val(result.rolename);
+
+                console.log(data);
+            });
+        });
+
+            // $("#update_products").click(function() {
+            //     const id = $("#productIdEdit").val();
+            //     const roleEditedName = $('#roleNameEdit').val();
+            //     $.post("/edit-official-roles/" + id, {
+            //             roleNameEdit: roleEditedName,
+            //         },
+            //         function(data, status) {
+            //             const result = JSON.parse(data);
+            //             $('div.alert-content').html(result.success);
+            //             if (status == 'success') {
+            //                 $('#roleNameEdit').val('');
+            //                 $('#editRole').modal("hide");
+            //             }
+            //             refreshTable();
+            //         });
+            // });
+
+</script>

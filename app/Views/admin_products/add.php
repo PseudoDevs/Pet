@@ -23,29 +23,29 @@ echo view('layouts/sidenav');
                                 <h2>Product Information</h2>
                             </div>
                             <div class="body">
-                                <form action="/add-new-product/" method="post" enctype="multipart/form-data">
+                            <?= form_open_multipart('/add-new-product'); ?>
                                 <label for="basic-url">Product Name</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" aria-describedby="basic-addon2">
+                                    <input type="text" class="form-control" name="p_name" aria-describedby="basic-addon2">
                                 </div>
                                 <label for="basic-url">Product Description</label>
                                 <div class="input-group mb-3">
-                                    <textarea class="form-control" rows="5" aria-describedby="basic-addon2"></textarea>
+                                    <textarea class="form-control" rows="5" name="p_desc" aria-describedby="basic-addon2"></textarea>
                                 </div>
                                 <label for="basic-url">Product Price</label>
                                 <div class="input-group mb-3">
-                                    <input type="number" class="form-control" aria-describedby="basic-addon2">
+                                    <input type="number" class="form-control" name="p_price" aria-describedby="basic-addon2">
                                 </div>
                                 <label for="basic-url">Product Stocks</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" aria-describedby="basic-addon2">
+                                    <input type="text" class="form-control" name="p_stocks" aria-describedby="basic-addon2">
                                 </div>
                                 <label for="basic-url">Product Thumbnail</label>
                                 <div class="input-group mb-3">
-                                    <input type="file" class="form-control" aria-describedby="basic-addon2">
+                                    <input type="file" class="form-control" name="p_thumbnail" aria-describedby="basic-addon2">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Add Product</button>
-                                </form>
+                                <?= form_close(); ?>
                             </div>
                         </div>
                     </div>

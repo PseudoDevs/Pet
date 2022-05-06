@@ -50,8 +50,8 @@ $routes->get('/sales', 'SalesController::sales');
 // Admin Routes -> Products
 $routes->get('/product', 'ProductController::index');
 $routes->get('/add-product', 'ProductController::create');
-$routes->get('/add-new-product', 'ProductController::new');
-$routes->get('/edit-product/(:num)', 'ProductController::edit');
+$routes->post('/add-new-product', 'ProductController::new');
+$routes->post('/edit-product', 'ProductController::edit');
 $routes->get('/delete-product/(:num)', 'ProductController::delete/$1');
 $routes->get('/view-product/(:num)', 'ProductController::show/$1');
 
