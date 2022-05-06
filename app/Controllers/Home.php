@@ -37,4 +37,35 @@ class Home extends BaseController
         return view('login');
     }
 
+   
+    public function authLogin() {
+        $user = new User();
+        $userAuth = $user->where('username', $this->request->getVar('signInEmail'))->first();
+
+        if(!$userAuth) {
+            return redirect()->to('/')->with('error', 'Account not Found!');
+        } else {
+            $userAuthPass = md5($this->request->getVar('signInPassword'));
+            if($userAuthPass != $userAuth['password'] || $userAuth['username'] != $this->request->getVar('signInEmail')) {
+                return redirect()->to('/')->with('error', 'Incorrect Username or Password!');
+            } else {
+                $userSessionAuth = array(
+                    'id' => $userAuth['id'],
+                    'name' => $userAuth['name'],
+                    'username' => $userAuth['username'],
+                    'role' => $userAuth['role'],
+                    'status' => $userAuth['status'],
+                    'logged_in' => true
+                );
+                session()->set($userSessionAuth);
+                return redirect()->to('/dashboard');
+            }
+        }
+    }
+
+    public function authLogout() {
+        session()->destroy();
+        return redirect()->to('/')->with('success', 'Logout Successfully!');
+    }
+
 }

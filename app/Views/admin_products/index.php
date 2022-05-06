@@ -90,9 +90,7 @@ echo view('admin_products/view');
 //                 $('.dataTable').find("tbody").empty();
 //                 $('.dataTable tbody').append(data);
 //                 var table = $(".dataTable").DataTable();
-
 //             });
-
 //         });
 
 var isSomethingTrue = true;

@@ -3,7 +3,7 @@
      <div class="modal-dialog modal-dialog-centered" role="document">
          <div class="modal-content">
          <?= form_open_multipart('/edit-product'); ?>
-         <input type="text" id="productIdEdit" name="p_idEdit">
+         <input type="hidden" id="productIdEdit" name="p_idEdit">
              <div class="modal-header">
                  <h5 class="modal-title" id="editProduct">Edit Product</h5>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span

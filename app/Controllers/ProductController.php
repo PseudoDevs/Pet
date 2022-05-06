@@ -19,8 +19,6 @@ class ProductController extends ResourceController
         $products = new Products();
 
         $data['products'] = $products->findAll();
-
-
         return view('admin_products/index', $data);
     }
 
@@ -60,9 +58,6 @@ class ProductController extends ResourceController
             'p_stocks' => $_POST['p_stocks'],
             'p_thumbnail' => $product_thumbnail_image
         );
-
-
-
 
         if ($products->insert($data)) {
             return redirect()->to('/add-product')->with('success', 'Product Added Successfully');

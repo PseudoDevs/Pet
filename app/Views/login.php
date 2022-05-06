@@ -72,12 +72,6 @@ echo view('home_layouts/header');
                   </div>
                   <div class="col-12">
                     <div class="form-group account-info-group mb--0">
-                      <div class="rememberme-account">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                          <label class="form-check-label" for="defaultCheck1">Remember me</label>
-                        </div>
-                      </div>
                       <a class="lost-password" href="account-register.html">Lost your password?</a>
                     </div>
                   </div>
