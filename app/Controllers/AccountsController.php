@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
+use \App\Models\User;
 
 class AccountsController extends ResourceController
 {
@@ -13,7 +14,42 @@ class AccountsController extends ResourceController
      */
     public function index()
     {
-        return view('admin_users/index');
+        $users = new User();
+        $data['users_list'] = $users->findAll();
+
+        return view('admin_users/index', $data);
+    }
+
+    public function banAccount($id = null) {
+        $users = new User();
+       
+        $db = db_connect();
+
+        $status = $db->query("UPDATE `users` SET `status` = 'Banned' WHERE `id` = $id");
+        
+
+        if (!$status) {
+            return redirect()->to('/accounts')->with('success', 'Account has been banned');
+        } else {
+            return redirect()->to('/accounts')->with('error', 'Account could not be banned');
+        }
+
+    }
+
+    public function activateAccount($id = null) {
+        $users = new User();
+       
+        $db = db_connect();
+
+        $status = $db->query("UPDATE `users` SET `status` = 'Active' WHERE `id` = $id");
+        
+
+        if (!$status) {
+            return redirect()->to('/accounts')->with('success', 'Account has been banned');
+        } else {
+            return redirect()->to('/accounts')->with('error', 'Account could not be banned');
+        }
+
     }
 
     /**

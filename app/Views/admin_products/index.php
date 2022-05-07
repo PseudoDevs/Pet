@@ -6,63 +6,69 @@ echo view('layouts/sidenav');
 ?>
 
 <div id="main-content">
-            <div class="container-fluid">
-                <!-- Page header section  -->
-                <div class="block-header">
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h1>Products</h1>
+    <div class="container-fluid">
+        <!-- Page header section  -->
+        <div class="block-header">
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <h1>Products</h1>
+                </div>
+            </div>
+        </div>
+
+        <a href="/add-product" class="btn btn-primary">Add Product</a>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 mt-2">
+                <div class="card">
+                    <div class="header">
+                        <h2> Products List </h2>
+                        <ul class="header-dropdown dropdown">
+                            <li><a href="javascript:void(0);" class="full-screen"><i class="fa fa-expand"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example dataTable table-custom spacing5">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Product Thumbnail</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($products as $product): ?>
+                                    <tr>
+                                        <td><?= $product['p_name'] ?></td>
+                                        <td><img src="/uploads/<?= $product['p_thumbnail'] ?>" class="img-fluid"
+                                                height="100" width="100"></td>
+                                        <td><?= $product['p_stocks'] ?></td>
+                                        <td>₱ <?= $product['p_price'] ?></td>
+                                        <td>
+                                            <button type="button" data-toggle="modal" data-id="<?= $product['id'] ?>"
+                                                data-target="#edit" class="btn btn-success btn-sm edit_p">Edit</button>
+                                            <button type="button" data-toggle="modal" data-id="<?= $product['id'] ?>"
+                                                data-target="#delete"
+                                                class="btn btn-danger btn-sm delete_p">Delete</button>
+                                            <button type="button" data-toggle="modal" data-id="<?= $product['id'] ?>"
+                                                data-target="#view"
+                                                class="btn btn-secondary btn-sm view_p">View</button>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-
-                <a href="/add-product" class="btn btn-primary">Add Product</a>
-
-                <div class="row clearfix">
-                    <div class="col-lg-12 mt-2">
-                        <div class="card">
-                            <div class="header">
-                                <h2> Products List </h2>
-                                <ul class="header-dropdown dropdown">
-                                    <li><a href="javascript:void(0);" class="full-screen"><i class="fa fa-expand"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover js-basic-example dataTable table-custom spacing5">
-                                        <thead>
-                                            <tr>
-                                                <th>Product Name</th>
-                                                <th>Product Thumbnail</th>
-                                                <th>Quantity</th>
-                                                <th>Price</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach($products as $product): ?>
-                                            <tr>
-                                                <td><?= $product['p_name'] ?></td>
-                                                <td><img src="/uploads/<?= $product['p_thumbnail'] ?>" class="img-fluid" height="100" width="100"></td>
-                                                <td><?= $product['p_stocks'] ?></td>
-                                                <td>₱ <?= $product['p_price'] ?></td>
-                                                <td>
-                                                    <button type="button" data-toggle="modal" data-id="<?= $product['id'] ?>" data-target="#edit"  class="btn btn-success btn-sm edit_p">Edit</button>
-                                                    <button type="button" data-toggle="modal" data-id="<?= $product['id'] ?>" data-target="#delete" class="btn btn-danger btn-sm delete_p">Delete</button>
-                                                    <button type="button" data-toggle="modal" data-id="<?= $product['id'] ?>" data-target="#view" class="btn btn-secondary btn-sm view_p">View</button>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
 
 
-<?php 
+        <?php 
 
 echo view('layouts/footer');
 echo view('admin_products/delete');
@@ -71,29 +77,27 @@ echo view('admin_products/view');
 
 ?>
 
-<script>
+        <script>
+        // function refreshTable() {
+        //             $.get("/fetch-official-roles", function(data, status) {
+        //                 $('.dataTable').DataTable().clear().destroy();
+        //                 $('.dataTable').find("tbody").empty();
+        //                 $('.dataTable tbody').append(data);
+        //                 var table = $("dataTable").DataTable();
 
-    
-// function refreshTable() {
-//             $.get("/fetch-official-roles", function(data, status) {
-//                 $('.dataTable').DataTable().clear().destroy();
-//                 $('.dataTable').find("tbody").empty();
-//                 $('.dataTable tbody').append(data);
-//                 var table = $("dataTable").DataTable();
+        //             });
+        //         }
 
-//             });
-//         }
+        //         $(document).ready(function() {
+        //             $.get("/fetch-official-roles", function(data, status) {
+        //                 $('.dataTable').DataTable().clear().destroy();
+        //                 $('.dataTable').find("tbody").empty();
+        //                 $('.dataTable tbody').append(data);
+        //                 var table = $(".dataTable").DataTable();
+        //             });
+        //         });
 
-//         $(document).ready(function() {
-//             $.get("/fetch-official-roles", function(data, status) {
-//                 $('.dataTable').DataTable().clear().destroy();
-//                 $('.dataTable').find("tbody").empty();
-//                 $('.dataTable tbody').append(data);
-//                 var table = $(".dataTable").DataTable();
-//             });
-//         });
-
-var isSomethingTrue = true;
+        var isSomethingTrue = true;
         $(".dataTable").on('click', '.delete_p', function() {
             var id = $(this).data('id');
             $("#deleteProducts").click(function() {
@@ -129,21 +133,18 @@ var isSomethingTrue = true;
             });
         });
 
-            // $("#update_products").click(function() {
-            //     const id = $("#productIdEdit").val();
-            //     const roleEditedName = $('#roleNameEdit').val();
-            //     $.post("/edit-official-roles/" + id, {
-            //             roleNameEdit: roleEditedName,
-            //         },
-            //         function(data, status) {
-            //             const result = JSON.parse(data);
-            //             $('div.alert-content').html(result.success);
-            //             if (status == 'success') {
-            //                 $('#roleNameEdit').val('');
-            //                 $('#editRole').modal("hide");
-            //             }
-            //             refreshTable();
-            //         });
-            // });
+        $(".dataTable").on('click', '.view_p', function() {
 
-</script>
+            var id = $(this).data('id');
+
+            $.post("/views-product/" + id, function(data, status) {
+                const result = JSON.parse(data);
+                $('#productIdView').val(result.id);
+                $('#p_name_view').val(result.p_name);
+                $('#p_desc_view').val(result.p_description);
+                $('#p_price_view').val(result.p_price);
+                $('#p_stocks_view').val(result.p_stocks);
+                $('#p_thumbnail_view').attr('src', '/uploads/' + result.p_thumbnail);
+            });
+        });
+        </script>

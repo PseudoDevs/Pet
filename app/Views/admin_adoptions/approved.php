@@ -11,7 +11,7 @@ echo view('layouts/sidenav');
                 <div class="block-header">
                     <div class="row clearfix">
                         <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h1>Users</h1>
+                            <h1>Adoptions</h1>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@ echo view('layouts/sidenav');
                     <div class="col-lg-12 mt-2">
                         <div class="card">
                             <div class="header">
-                                <h2> Users List </h2>
+                                <h2> Adoption List </h2>
                                 <ul class="header-dropdown dropdown">
                                     <li><a href="javascript:void(0);" class="full-screen"><i class="fa fa-expand"></i></a></li>
                                 </ul>
@@ -30,27 +30,29 @@ echo view('layouts/sidenav');
                                     <table class="table table-hover js-basic-example dataTable table-custom spacing5">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>User Name</th>
-                                                <th>Full Name</th>
-                                                <th>Email Address</th>
+                                                <th>Pet Name</th>
+                                                <th>Pet Thumbnail</th>
+                                                <th>Pet Description</th>
+                                                <th>Pet Breed</th>
+                                                <th>Pet Age</th>
+                                                <th>Pet Location</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($users_list as $users_lists) : ?>
-                                                <?php if($users_lists['role'] == 'User' && $users_lists['status'] == 'Active') : ?>
                                             <tr>
-                                                <td><?= $users_lists['id']; ?></td>
-                                                <td><?= $users_lists['username']; ?></td>
-                                                <td><?= $users_lists['fullname']; ?></td>
-                                                <td><?= $users_lists['email']; ?></td>
+                                                <td>Tiger Nixon</td>
+                                                <td>System Architect</td>
+                                                <td>Lorem ipsum dolor sit amet</td>
+                                                <td>Dalamation</td>
+                                                <td>3 yrs old</td>
+                                                <td> Manila, Philippines</td>
                                                 <td>
-                                                    <a href="/ban-account/<?= $users_lists['id']; ?>" class="btn btn-danger btn-sm">Ban Account</a>
+                                                    <a href="/edit-product/" class="btn btn-success btn-sm">Edit</a>
+                                                    <a href="/delete-product/" class="btn btn-danger btn-sm">Delete</a>
+                                                    <a href="/view-product/" class="btn btn-secondary btn-sm">View</a>
                                                 </td>
                                             </tr>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -63,7 +65,7 @@ echo view('layouts/sidenav');
                     <div class="col-lg-12 mt-2">
                         <div class="card">
                             <div class="header">
-                                <h2> Users List </h2>
+                                <h2> Adoption Request </h2>
                                 <ul class="header-dropdown dropdown">
                                     <li><a href="javascript:void(0);" class="full-screen"><i class="fa fa-expand"></i></a></li>
                                 </ul>
@@ -73,27 +75,28 @@ echo view('layouts/sidenav');
                                     <table class="table table-hover js-basic-example dataTable table-custom spacing5">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>User Name</th>
-                                                <th>Full Name</th>
-                                                <th>Email Address</th>
+                                                <th>Pet Name</th>
+                                                <th>Pet Thumbnail</th>
+                                                <th>Pet Description</th>
+                                                <th>Pet Breed</th>
+                                                <th>Pet Age</th>
+                                                <th>Pet Location</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($users_list as $users_lists) : ?>
-                                                <?php if($users_lists['role'] == 'User' && $users_lists['status'] == 'Banned') : ?>
                                             <tr>
-                                                <td><?= $users_lists['id']; ?></td>
-                                                <td><?= $users_lists['username']; ?></td>
-                                                <td><?= $users_lists['fullname']; ?></td>
-                                                <td><?= $users_lists['email']; ?></td>
+                                                <td>Tiger Nixon</td>
+                                                <td>System Architect</td>
+                                                <td>Lorem ipsum dolor sit amet</td>
+                                                <td>Dalamation</td>
+                                                <td>3 yrs old</td>
+                                                <td> Manila, Philippines</td>
                                                 <td>
-                                                    <a href="/activate-account/<?= $users_lists['id']; ?>" class="btn btn-success btn-sm">Activate Account</a>
+                                                    <a href="/accept-adoption/" class="btn btn-success btn-sm">Accept Request</a>
+                                                    <a href="/decline-adoption/" class="btn btn-danger btn-sm">Decline Request</a>
                                                 </td>
                                             </tr>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -101,11 +104,11 @@ echo view('layouts/sidenav');
                         </div>
                     </div>
                 </div>
+                
 
 <?php 
 
 echo view('layouts/footer');
-
 
 
 ?>

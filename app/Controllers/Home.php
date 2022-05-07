@@ -2,8 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+
 class Home extends BaseController
 {
+
+    protected $helpers = ['form', 'url', 'text', 'date'];
+
     public function index()
     {
         return view('index');
@@ -40,32 +45,84 @@ class Home extends BaseController
    
     public function authLogin() {
         $user = new User();
-        $userAuth = $user->where('username', $this->request->getVar('signInEmail'))->first();
 
-        if(!$userAuth) {
-            return redirect()->to('/')->with('error', 'Account not Found!');
+        $email = $this->request->getVar('user-email');
+        $password = $this->request->getVar('user-pass');
+
+        $adminAuth = $user->where('username', $email)->orWhere('email', $email)->first();
+
+        if (!$adminAuth) {
+            return redirect()->to('/login')->with('error', 'Username / Email was not Found');
         } else {
-            $userAuthPass = md5($this->request->getVar('signInPassword'));
-            if($userAuthPass != $userAuth['password'] || $userAuth['username'] != $this->request->getVar('signInEmail')) {
-                return redirect()->to('/')->with('error', 'Incorrect Username or Password!');
+            if ($adminAuth['password'] == md5($password)) {
+                if ($adminAuth['role'] == 'Admin' && $adminAuth['status'] == 'Active') {
+                    $adminSession = array(
+                        'id' => $adminAuth['id'],
+                        'fullname' => $adminAuth['fullname'],
+                        'username' => $adminAuth['username'],
+                        'email' => $adminAuth['email'],
+                        'role' => $adminAuth['role'],
+                        'status' => $adminAuth['status'],
+                        'isLoggedIn' => true
+                    );
+                    session()->set($adminSession);
+                    return redirect()->to('/admin');
+                } else if ($adminAuth['role'] == 'User' && $adminAuth['status'] == 'Active') {
+                    $adminSession = array(
+                        'id' => $adminAuth['id'],
+                        'fullname' => $adminAuth['fullname'],
+                        'username' => $adminAuth['username'],
+                        'email' => $adminAuth['email'],
+                        'role' => $adminAuth['role'],
+                        'status' => $adminAuth['status'],
+                        'isLoggedIn' => true
+                    );
+                    session()->set($adminSession);
+                    return redirect()->to('/user-dashboard');
+                } else if($adminAuth['status'] == 'Inactive') {
+                    return redirect()->to('/login')->with('error', '<center>Your Account is Inactive Please Contact the Administrator<center>');
+                }
             } else {
-                $userSessionAuth = array(
-                    'id' => $userAuth['id'],
-                    'name' => $userAuth['name'],
-                    'username' => $userAuth['username'],
-                    'role' => $userAuth['role'],
-                    'status' => $userAuth['status'],
-                    'logged_in' => true
-                );
-                session()->set($userSessionAuth);
-                return redirect()->to('/dashboard');
+                return redirect()->to('/login')->with('error', 'Username / Email / Password is Incorrect');
             }
+        }
+    }
+
+    public function authRegister() {
+        $user = new User();
+
+        $fullname = $this->request->getVar('user-fullname');
+        $username = $this->request->getVar('user-name');
+        $email = $this->request->getVar('user-email');
+        $password = $this->request->getVar('user-pass');
+        $confirmPassword = $this->request->getVar('user-confirm-pass');
+
+        $adminAuth = $user->where('username', $username)->orWhere('email', $email)->first();
+
+        if (!$adminAuth) {
+            if ($password == $confirmPassword) {
+                $adminSession = array(
+                    'fullname' => $fullname,
+                    'username' => $username,
+                    'password' => md5($confirmPassword),
+                    'email' => $email,
+                    'role' => 'User',
+                    'status' => 'Active',
+                );
+                $user->save($adminSession);
+                return redirect()->to('/login')->with('success', '<center>Registration Successful<center>');
+            } else {
+                return redirect()->to('/register')->with('error', '<center>Password and Confirm Password does not match<center>');
+            }
+        } else {
+            return redirect()->to('/register')->with('error', '<center>Username or Email already exists<center>');
         }
     }
 
     public function authLogout() {
         session()->destroy();
-        return redirect()->to('/')->with('success', 'Logout Successfully!');
+        session()->setFlashdata('success', 'You have been logged out');
+        return redirect()->to('/login')->with('success', 'Logout Successfully!');
     }
 
 }

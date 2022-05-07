@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 
-class AdoptionController extends ResourceController
+class UserController extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format
@@ -13,12 +13,7 @@ class AdoptionController extends ResourceController
      */
     public function index()
     {
-        return view('admin_adoptions/index');
-    }
-
-    public function approvedAdoption()
-    {
-        return view('admin_adoptions/approved');
+        return view('user/index');
     }
 
     /**

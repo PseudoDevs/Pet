@@ -38,7 +38,10 @@ $routes->get('/home-products', 'Home::products');
 $routes->get('/home-adoption', 'Home::adoption');
 $routes->get('/product-details', 'Home::productDetails');
 $routes->get('/login', 'Home::login');
+$routes->post('/authLogin', 'Home::authLogin');
+$routes->get('/authLogout', 'Home::authLogout');
 $routes->get('/register', 'Home::register');
+$routes->post('/authRegister', 'Home::authRegister');
 
 
 // Admin Routes -> Dashboard
@@ -54,12 +57,17 @@ $routes->post('/add-new-product', 'ProductController::new');
 $routes->post('/edit-product', 'ProductController::edit');
 $routes->get('/delete-product/(:num)', 'ProductController::delete/$1');
 $routes->get('/view-product/(:num)', 'ProductController::show/$1');
+$routes->post('/views-product/(:num)', 'ProductController::show/$1');
 
 // Admin Routes -> Accounts
 $routes->get('/accounts', 'AccountsController::index');
+$routes->get('/ban-account/(:num)', 'AccountsController::banAccount/$1');
+$routes->get('/activate-account/(:num)', 'AccountsController::activateAccount/$1');
 
 // Admin Routes -> Adoptions
 $routes->get('/adoptions', 'AdoptionController::index');
+$routes->get('/approved-adoptions', 'AdoptionController::approvedAdoption');
+
 
 // Admin Routes -> Services
 $routes->get('/services', 'ServicesController::index');
@@ -67,6 +75,11 @@ $routes->get('/services', 'ServicesController::index');
 // Admin Routes -> Payments
 $routes->get('/payments', 'PaymentsController::index');
 
+// User Routes -> Dashboard
+$routes->get('/user-dashboard', 'UserController::index');
+$routes->get('/add-adoptions', 'AdoptionUserController::createViewAdoption');
+$routes->get('/user-adoptions', 'AdoptionUserController::index');
+$routes->post('/add-new-pet', 'AdoptionUserController::addAdoption');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
