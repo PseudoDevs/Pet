@@ -36,7 +36,7 @@ $routes->get('/home-about', 'Home::about');
 $routes->get('/home-services', 'Home::services');
 $routes->get('/home-products', 'Home::products');
 $routes->get('/home-adoption', 'Home::adoption');
-$routes->get('/product-details', 'Home::productDetails');
+$routes->get('/product-details/(:num)', 'Home::productDetails/$1');
 $routes->get('/login', 'Home::login');
 $routes->post('/authLogin', 'Home::authLogin');
 $routes->get('/authLogout', 'Home::authLogout');
@@ -67,7 +67,8 @@ $routes->get('/activate-account/(:num)', 'AccountsController::activateAccount/$1
 // Admin Routes -> Adoptions
 $routes->get('/adoptions', 'AdoptionController::index');
 $routes->get('/approved-adoptions', 'AdoptionController::approvedAdoption');
-
+$routes->get('/accept-adoption/(:num)', 'AdoptionController::acceptAdoption/$1');
+$routes->get('/decline-adoption/(:num)', 'AdoptionController::declineAdoption/$1');
 
 // Admin Routes -> Services
 $routes->get('/services', 'ServicesController::index');

@@ -32,7 +32,6 @@ echo view('layouts/sidenav');
                                             <tr>
                                                 <th>Pet Name</th>
                                                 <th>Pet Thumbnail</th>
-                                                <th>Pet Description</th>
                                                 <th>Pet Breed</th>
                                                 <th>Pet Age</th>
                                                 <th>Pet Location</th>
@@ -40,19 +39,21 @@ echo view('layouts/sidenav');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Lorem ipsum dolor sit amet</td>
-                                                <td>Dalamation</td>
-                                                <td>3 yrs old</td>
-                                                <td> Manila, Philippines</td>
-                                                <td>
-                                                    <a href="/edit-product/" class="btn btn-success btn-sm">Edit</a>
-                                                    <a href="/delete-product/" class="btn btn-danger btn-sm">Delete</a>
-                                                    <a href="/view-product/" class="btn btn-secondary btn-sm">View</a>
-                                                </td>
-                                            </tr>
+                                        <?php foreach($adoption_list as $adoption): ?>
+                                                <?php if($adoption['status'] == 'Approved'): ?>
+                                                <tr>
+                                                    <td><?= $adoption['pet_name']; ?></td>
+                                                    <td><img height="100" width="100" src="/uploads/<?= $adoption['pet_thumbnail']; ?>" class="img-fluid"/></td>
+                                                    <td><?= $adoption['pet_breed']; ?></td>
+                                                    <td><?= $adoption['pet_age']; ?></td>
+                                                    <td><?= $adoption['pet_location']; ?></td>
+                                                    <td>
+                                                        <a href="/view-adoption/<?= $adoption['id']; ?>" class="btn btn-success btn-sm">View</a>
+                                                        <a href="/delete-adoption/<?= $adoption['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                                    </td>
+                                                </tr>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -65,7 +66,7 @@ echo view('layouts/sidenav');
                     <div class="col-lg-12 mt-2">
                         <div class="card">
                             <div class="header">
-                                <h2> Adoption Request </h2>
+                                <h2> Adoption Requests </h2>
                                 <ul class="header-dropdown dropdown">
                                     <li><a href="javascript:void(0);" class="full-screen"><i class="fa fa-expand"></i></a></li>
                                 </ul>
@@ -77,7 +78,6 @@ echo view('layouts/sidenav');
                                             <tr>
                                                 <th>Pet Name</th>
                                                 <th>Pet Thumbnail</th>
-                                                <th>Pet Description</th>
                                                 <th>Pet Breed</th>
                                                 <th>Pet Age</th>
                                                 <th>Pet Location</th>
@@ -85,18 +85,21 @@ echo view('layouts/sidenav');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Lorem ipsum dolor sit amet</td>
-                                                <td>Dalamation</td>
-                                                <td>3 yrs old</td>
-                                                <td> Manila, Philippines</td>
-                                                <td>
-                                                    <a href="/accept-adoption/" class="btn btn-success btn-sm">Accept Request</a>
-                                                    <a href="/decline-adoption/" class="btn btn-danger btn-sm">Decline Request</a>
-                                                </td>
-                                            </tr>
+                                            <?php foreach($adoption_list as $adoption): ?>
+                                                <?php if($adoption['status'] == 'Pending'): ?>
+                                                <tr>
+                                                    <td><?= $adoption['pet_name']; ?></td>
+                                                    <td><img height="100" width="100" src="/uploads/<?= $adoption['pet_thumbnail']; ?>" class="img-fluid"/></td>
+                                                    <td><?= $adoption['pet_breed']; ?></td>
+                                                    <td><?= $adoption['pet_age']; ?></td>
+                                                    <td><?= $adoption['pet_location']; ?></td>
+                                                    <td>
+                                                        <a href="/accept-adoption/<?= $adoption['id']; ?>" class="btn btn-success btn-sm">Accept Request</a>
+                                                        <a href="/decline-adoption/<?= $adoption['id']; ?>" class="btn btn-danger btn-sm">Decline Request</a>
+                                                    </td>
+                                                </tr>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -107,8 +110,5 @@ echo view('layouts/sidenav');
                 
 
 <?php 
-
-echo view('layouts/footer');
-
-
+    echo view('layouts/footer');
 ?>

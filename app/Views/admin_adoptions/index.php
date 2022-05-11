@@ -85,18 +85,22 @@ echo view('layouts/sidenav');
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php foreach($adoption_list as $adoption): ?>
+                                                <?php if($adoption['status'] == 'Pending'): ?>
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Lorem ipsum dolor sit amet</td>
-                                                <td>Dalamation</td>
-                                                <td>3 yrs old</td>
-                                                <td> Manila, Philippines</td>
+                                                <td><?= $adoption['pet_name']; ?></td>
+                                                <td><?= $adoption['pet_thumbnail']; ?></td>
+                                                <td><?= $adoption['pet_description']; ?></td>
+                                                <td><?= $adoption['pet_breed']; ?></td>
+                                                <td><?= $adoption['pet_age']; ?></td>
+                                                <td><?= $adoption['pet_location']; ?></td>
                                                 <td>
                                                     <a href="/accept-adoption/" class="btn btn-success btn-sm">Accept Request</a>
                                                     <a href="/decline-adoption/" class="btn btn-danger btn-sm">Decline Request</a>
                                                 </td>
                                             </tr>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -105,27 +109,6 @@ echo view('layouts/sidenav');
                     </div>
                 </div>
                 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php 
 

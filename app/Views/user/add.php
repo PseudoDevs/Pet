@@ -28,6 +28,10 @@ echo view('layouts/sidenav');
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" name="pet_name" aria-describedby="basic-addon2">
                                 </div>
+                                <label for="basic-url">Pet Age</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="pet_age" aria-describedby="basic-addon2">
+                                </div>
                                 <label for="basic-url">Pet Description</label>
                                 <div class="input-group mb-3">
                                     <textarea class="form-control" rows="5" name="pet_desc" aria-describedby="basic-addon2"></textarea>

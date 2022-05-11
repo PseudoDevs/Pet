@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 
+use App\Models\Adoption;
+use App\Models\User;
+
 class AdoptionController extends ResourceController
 {
     /**
@@ -13,12 +16,48 @@ class AdoptionController extends ResourceController
      */
     public function index()
     {
-        return view('admin_adoptions/index');
+        $adoption = new Adoption();
+
+        $data['adoption_list'] = $adoption->findAll();
+
+        return view('admin_adoptions/index', $data);
     }
 
     public function approvedAdoption()
     {
-        return view('admin_adoptions/approved');
+        $adoption = new Adoption();
+
+        $data['adoption_list'] = $adoption->findAll();
+
+        return view('admin_adoptions/approved', $data);
+    }
+
+    public function acceptAdoption($id = null) {
+        $adoption = new Adoption();
+
+        $db = db_connect();
+
+        $status = $db->query("UPDATE `adoption` SET `status` = 'Approved' WHERE `id` = $id");
+
+        if (!$status) {
+            return redirect()->to('/approved-adoptions')->with('success', 'Adoption has been Approved');
+        } else {
+            return redirect()->to('/approved-adoptions')->with('error', 'Adoption could not be Accepted');
+        }
+    }
+
+    public function declineAdoption($id = null) {
+        $adoption = new Adoption();
+
+        $db = db_connect();
+
+        $status = $db->query("UPDATE `adoption` SET `status` = 'Declined' WHERE `id` = $id");
+
+        if (!$status) {
+            return redirect()->to('/approved-adoptions')->with('success', 'Adoption has been Declined');
+        } else {
+            return redirect()->to('/approved-adoptions')->with('error', 'Adoption could not be Declined');
+        }
     }
 
     /**

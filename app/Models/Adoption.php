@@ -15,7 +15,7 @@ class Adoption extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'user_id', 'pet_name', 'pet_description', 'pet_price', 'pet_breed', 'pet_owner', 'pet_location', 'pet_owner_url', 'pet_thumbnail', 'status'
+        'user_id', 'pet_name', 'pet_age', 'pet_description', 'pet_price', 'pet_breed', 'pet_owner', 'pet_location', 'pet_owner_url', 'pet_thumbnail', 'status'
     ];
 
     // Dates

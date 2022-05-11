@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Products;
+use App\Models\Adoption;
 
 class Home extends BaseController
 {
@@ -18,21 +20,50 @@ class Home extends BaseController
         return view('about');
     }
 
+     // Start for Product Home Page 
+
     public function products() {
-        return view('products');
+            $product = new Products();
+            $pager = \Config\Services::pager();
+
+            $products['home_products'] = $product->paginate(9);
+            $products['pager'] = $product->pager;
+
+            return view('products', $products);
     }
+
+    // End for Product Home Page
+
     
-    public function productDetails() {
-        return view('product-details');
+    public function productDetails($id) {
+
+        $product = new Products();
+
+        $products = $product->find($id);
+
+
+        echo json_encode($products);
     }
 
     public function services() {
         return view('services');
     }
 
+    // Start for Adoption Home Page 
+
     public function adoption() {
-        return view('adoption');
+
+        $adoptions = new Adoption();
+
+        $pager = \Config\Services::pager();
+
+        $adoption['home_adoptions'] = $adoptions->paginate(9);
+        $adoption['pager'] = $adoptions->pager;
+
+        return view('adoption', $adoption);
     }
+
+    // End for Adoption Home Page 
 
     public function register() {
         return view('register');
@@ -124,5 +155,7 @@ class Home extends BaseController
         session()->setFlashdata('success', 'You have been logged out');
         return redirect()->to('/login')->with('success', 'Logout Successfully!');
     }
+
+   
 
 }

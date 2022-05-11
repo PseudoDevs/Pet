@@ -38,6 +38,7 @@ class AdoptionUserController extends BaseController
         $adoption_data = array(
             'user_id' => session()->get('id'), 
             'pet_name' => $this->request->getPost('pet_name'), 
+            'pet_age' => $this->request->getPost('pet_age'), 
             'pet_description' => $this->request->getPost('pet_desc'),
             'pet_thumbnail' => $petThumbnail,
             'pet_price' => $this->request->getPost('pet_price'), 
