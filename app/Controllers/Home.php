@@ -20,6 +20,14 @@ class Home extends BaseController
         return view('about');
     }
 
+    public function profile() {
+        return view('profile');
+    }
+
+    public function cart() {
+        return view('cart');
+    }
+
      // Start for Product Home Page 
 
     public function products() {

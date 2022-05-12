@@ -36,12 +36,15 @@ $routes->get('/home-about', 'Home::about');
 $routes->get('/home-services', 'Home::services');
 $routes->get('/home-products', 'Home::products');
 $routes->get('/home-adoption', 'Home::adoption');
+$routes->get('/home-profile', 'Home::profile');
+$routes->get('/home-cart', 'Home::cart');
 $routes->get('/product-details/(:num)', 'Home::productDetails/$1');
 $routes->get('/login', 'Home::login');
 $routes->post('/authLogin', 'Home::authLogin');
 $routes->get('/authLogout', 'Home::authLogout');
 $routes->get('/register', 'Home::register');
 $routes->post('/authRegister', 'Home::authRegister');
+
 
 
 // Admin Routes -> Dashboard
