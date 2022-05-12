@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 echo view('home_layouts/header');
 
@@ -18,13 +18,13 @@ echo view('home_layouts/header');
   <!--== End Preloader Content ==-->
 
   <!--== Start Header Wrapper ==-->
- <?php echo view('home_layouts/navigation'); ?>
+  <?php echo view('home_layouts/navigation'); ?>
   <!--== End Header Wrapper ==-->
-  
+
   <main class="main-content">
 
-      <!--== Start Page Header Area Wrapper ==-->
-      <div class="page-header-area" data-bg-img="assets/img/photos/bg1.webp">
+    <!--== Start Page Header Area Wrapper ==-->
+    <div class="page-header-area" data-bg-img="assets/img/photos/bg1.webp">
       <div class="container pt--0 pb--0">
         <div class="row">
           <div class="col-12">
@@ -43,9 +43,9 @@ echo view('home_layouts/header');
       </div>
     </div>
     <!--== End Page Header Area Wrapper ==-->
-    
 
-  <section class="product-area product-single-area mb-3">
+
+    <section class="product-area product-single-area mb-3">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -316,7 +316,7 @@ echo view('home_layouts/header');
               <i class="pe-7s-close"></i>
             </button>
             <div class="modal-action-messages">
-              <i class="pe-7s-check"></i>  Added to wishlist successfully!
+              <i class="pe-7s-check"></i> Added to wishlist successfully!
             </div>
             <div class="modal-action-product">
               <div class="thumb">
@@ -341,7 +341,7 @@ echo view('home_layouts/header');
               <i class="pe-7s-close"></i>
             </button>
             <div class="modal-action-messages">
-              <i class="pe-7s-check"></i>  Added to cart successfully!
+              <i class="pe-7s-check"></i> Added to cart successfully!
             </div>
             <div class="modal-action-product">
               <div class="thumb">
@@ -397,10 +397,10 @@ echo view('home_layouts/header');
                     <div class="product-single-meta">
                       <ul>
                         <li><span>SKU:</span> Ch-256xl</li>
-                        <li><span>Categories:</span> 
+                        <li><span>Categories:</span>
                           <a href="#">Pet Food. eCommerce</a>
                         </li>
-                        <li><span>Tags:</span> 
+                        <li><span>Tags:</span>
                           <a href="#">Petfood. Pet</a>,
                           <a href="#">Animal.</a>
                         </li>
@@ -412,12 +412,12 @@ echo view('home_layouts/header');
                           <input type="text" title="Quantity" value="01">
                         </div>
                       </div>
-                      <button type="button" class="btn-product-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                      <button type="button" class="btn-product-cart"data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
                         Add To Cart
                       </button>
-                        <button type="button" class="btn-product-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                          <i class="pe-7s-like"></i>
-                        </button>
+                      <button type="button" class="btn-product-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                        <i class="pe-7s-like"></i>
+                      </button>
                       <button type="button" class="btn-product-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
                         <i class="pe-7s-look"></i>
                       </button>
@@ -501,7 +501,7 @@ echo view('home_layouts/header');
 
 
 
-<?php 
+<?php
 
 echo view('home_layouts/footer');
 
