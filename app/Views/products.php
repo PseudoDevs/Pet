@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 echo view('home_layouts/header');
 
@@ -43,34 +43,31 @@ echo view('home_layouts/header');
                     <div class="row">
                         <div class="col-12">
                             <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-grid" role="tabpanel"
-                                    aria-labelledby="nav-grid-tab">
+                                <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
                                     <div class="row">
-                                        <?php foreach($home_products as $product): ?>
-                                        <div class="col-sm-6 col-xl-4">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-item">
-                                                <div class="product-thumb">
-                                                    <a href="#">
-                                                        <img src="uploads/<?= $product['p_thumbnail']; ?>" width="270"
-                                                            height="270" alt="<?= $product['p_name']; ?>">
-                                                    </a>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h4 class="title"><a href="#"><?= $product['p_name']; ?></a></h4>
-                                                    <div class="prices">
-                                                        <span class="price">₱<?= $product['p_price']; ?></span>
+                                        <?php foreach ($home_products as $product) : ?>
+                                            <div class="col-sm-6 col-xl-4">
+                                                <!--== Start Product Item ==-->
+                                                <div class="product-item">
+                                                    <div class="product-thumb">
+                                                        <a href="#">
+                                                            <img src="uploads/<?= $product['p_thumbnail']; ?>" width="270" height="270" alt="<?= $product['p_name']; ?>">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-info">
+                                                        <h4 class="title"><a href="#"><?= $product['p_name']; ?></a></h4>
+                                                        <div class="prices">
+                                                            <span class="price">₱<?= $product['p_price']; ?></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-action">
+                                                        <button type="button" data-id="<?= $product['id']; ?>" class="btn-product-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                                            <i class="pe-7s-look"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
-                                                <div class="product-action">
-                                                    <button type="button" data-id="<?= $product['id']; ?>" class="btn-product-quick-view"
-                                                        data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                                        <i class="pe-7s-look"></i>
-                                                    </button>
-                                                </div>
+                                                <!--== End prPduct Item ==-->
                                             </div>
-                                            <!--== End prPduct Item ==-->
-                                        </div>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
@@ -97,8 +94,7 @@ echo view('home_layouts/header');
             <div class="row">
                 <div class="col-12">
                     <div class="footer-bottom-content">
-                        <p class="copyright">© <?= date('Y'); ?> Pet Shop. Made with <i class="fa fa-heart"></i><a
-                                target="_blank" href="#">.</a></p>
+                        <p class="copyright">© <?= date('Y'); ?> Pet Shop. Made with <i class="fa fa-heart"></i><a target="_blank" href="#">.</a></p>
                         <div class="payment">
                             <!-- <a href="account.html"><img src="assets/img/photos/payment.webp" width="192" height="21" alt="Payment Logo"></a> -->
                         </div>
@@ -128,8 +124,7 @@ echo view('home_layouts/header');
                             <div class="col-lg-6">
                                 <!--== Start Product Thumbnail Area ==-->
                                 <div class="product-single-thumb">
-                                    <img src="https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg" class="p_thumb" width="544" height="560"
-                                        alt="Image-HasTech">
+                                    <img src="https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg" class="p_thumb" width="544" height="560" alt="Image-HasTech">
                                 </div>
                                 <!--== End Product Thumbnail Area ==-->
                             </div>
@@ -146,12 +141,12 @@ echo view('home_layouts/header');
                                         </ul>
                                     </div>
                                     <div class="product-quick-action">
-                                    <div class="pro-qty">
-                          <input type="text" title="Quantity" value="01">
-                        </div>
-                                    <button type="button" class="btn-product-cart" >
-                        Add To Cart
-                      </button>
+                                        <div class="pro-qty">
+                                            <input type="text" title="Quantity" id="p_quantity" value="1">
+                                        </div>
+                                        <button type="button" class="btn-product-cart" id="p_add_to_cart">
+                                            Add To Cart
+                                        </button>
                                     </div>
                                 </div>
                                 <!--== End Product Info Area ==-->
@@ -166,12 +161,10 @@ echo view('home_layouts/header');
 <!--== End Product Quick View Modal ==-->
 
 <!--== Start Aside Menu ==-->
-<aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu"
-    aria-labelledby="offcanvasExampleLabel">
+<aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
-        <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i
-                class="fa fa-chevron-left"></i></button>
+        <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i class="fa fa-chevron-left"></i></button>
     </div>
     <div class="offcanvas-body">
         <nav id="offcanvasNav" class="offcanvas-menu-nav">
@@ -191,26 +184,26 @@ echo view('home_layouts/header');
 <!--== End Aside Menu ==-->
 </div>
 
-<?php 
+<?php
 
 echo view('home_layouts/footer');
 
 ?>
 
 <script>
-
-    $('.btn-product-quick-view').click(function(e){
+    $('.btn-product-quick-view').click(function(e) {
         e.preventDefault();
         var id = $(this).data('id');
-        $.get('/product-details/'+ id, function(data) {
+        $.get('/product-details/' + id, function(data) {
             const dataParser = JSON.parse(data);
             $(".main-title").text(dataParser.p_name);
             $(".product_desc").text(dataParser.p_description);
-            $(".p_thumb").attr("src", "uploads/"+dataParser.p_thumbnail);
+            $(".p_thumb").attr("src", "uploads/" + dataParser.p_thumbnail);
             $(".p_pricing").text("₱" + dataParser.p_price + ".00");
-            
+
         });
     });
-
-
+    $('#p_add_to_cart').click(function(){
+        console.log($('#p_quantity').val())
+    })
 </script>
