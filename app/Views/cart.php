@@ -255,7 +255,7 @@ input[type=number] {
                                             <input type="checkbox" id="select" data-id="" data-pro="" name="select">
                                         </td>
                                         <td class="product-remove">
-                                            <a href="" class="remove" data-id="" id="removeTr">×</a>
+                                            <a href="" class="remove" data-id="<?= $addToCart_list['atc_id'] ?>" id="removeTr">×</a>
                                         </td>
                                         <!-- <input type="text" id="cart_id" value=""> -->
                                         <td class="product-thumbnail">
@@ -393,17 +393,17 @@ $("#time-select").on("click", "button", function() {
 
 
 <script>
-// $('#cartTable').on('click', '#removeTr', function() {
-//     const id = $(this).data('id');
-//     // $(this).clos.remove();
-//     $.post("/deleteCart", {
-//             cart_id: id,
-//         },
-//         function(data, status) {
-//             location.href = "/cart";
-//         });
+$('#cartTable').on('click', '#removeTr', function() {
+    const id = $(this).data('id');
+    // $(this).clos.remove();
+    $.post("/deleteCart", {
+            cart_id: id,
+        },
+        function(data, status) {
+            location.href = "/home-cart";
+        });
 
-// });
+});
 </script>
 
 

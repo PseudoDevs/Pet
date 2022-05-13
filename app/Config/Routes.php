@@ -49,6 +49,7 @@ $routes->post('/addToCart', 'AdditionalController::addToCart');
 $routes->post('/updateProfile', 'AdditionalController::updateProfile');
 
 $routes->post('/updateCart', 'AdditionalController::updateCart');
+$routes->post('/deleteCart', 'AdditionalController::deleteCart');
 
 
 // Admin Routes -> Dashboard

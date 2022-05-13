@@ -73,4 +73,10 @@ class AdditionalController extends BaseController
             echo 'wrong';
         }
     }
+    public function deleteCart()
+    {
+        $addToCart = new AddToCart();
+        $addToCart->where('atc_id', $_POST['cart_id']);
+        $addToCart->delete();
+    }
 }
