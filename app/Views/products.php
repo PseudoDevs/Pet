@@ -130,6 +130,8 @@ echo view('home_layouts/header');
                             </div>
                             <div class="col-lg-6">
                                 <!--== Start Product Info Area ==-->
+                                <?= form_open('/addToCart') ?>
+                                <input type="text" id="p_id" name="p_id" value="">
                                 <div class="product-single-info">
                                     <h3 class="main-title"></h3>
                                     <div class="prices">
@@ -142,13 +144,14 @@ echo view('home_layouts/header');
                                     </div>
                                     <div class="product-quick-action">
                                         <div class="pro-qty">
-                                            <input type="text" title="Quantity" id="p_quantity" value="1">
+                                            <input type="text" title="Quantity" name="o_quantity" id="p_quantity" value="1">
                                         </div>
-                                        <button type="button" class="btn-product-cart" id="p_add_to_cart">
+                                        <button type="submit" class="btn-product-cart" id="p_add_to_cart">
                                             Add To Cart
                                         </button>
                                     </div>
                                 </div>
+                                <?= form_close() ?>
                                 <!--== End Product Info Area ==-->
                             </div>
                         </div>
@@ -200,10 +203,7 @@ echo view('home_layouts/footer');
             $(".product_desc").text(dataParser.p_description);
             $(".p_thumb").attr("src", "uploads/" + dataParser.p_thumbnail);
             $(".p_pricing").text("₱" + dataParser.p_price + ".00");
-
+            $("#p_id").val(dataParser.id);
         });
     });
-    $('#p_add_to_cart').click(function(){
-        console.log($('#p_quantity').val())
-    })
 </script>

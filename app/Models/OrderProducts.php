@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class User extends Model
+class OrderProducts extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
+    protected $table            = 'order_products';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,7 +15,8 @@ class User extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'username', 'email','password', 'fullname', 'role', 'status'];
+        'p_id', 'o_quantity', 'u_id','o_status'
+    ];
 
     // Dates
     protected $useTimestamps = false;

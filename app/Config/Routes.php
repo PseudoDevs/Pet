@@ -45,6 +45,10 @@ $routes->get('/authLogout', 'Home::authLogout');
 $routes->get('/register', 'Home::register');
 $routes->post('/authRegister', 'Home::authRegister');
 
+$routes->post('/addToCart', 'AdditionalController::addToCart');
+$routes->post('/updateProfile', 'AdditionalController::updateProfile');
+
+$routes->post('/updateCart', 'AdditionalController::updateCart');
 
 
 // Admin Routes -> Dashboard

@@ -125,14 +125,15 @@ echo view('home_layouts/header');
                                                         </thead>
                                                         <tbody>
 
+                                                        <?php foreach ($order_lists as $key => $order_list) :?>
                                                             <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
+                                                                <td><?= $order_list['o_id'] ?></td>
+                                                                <td><?= $order_list['created_at'] ?></td>
+                                                                <td><?= $order_list['p_name'] ?></td>
                                                                 <td>
+                                                                <?= $order_list['o_status'] ?>
 
-
-                                                                    <span class="badge badge-pill badge-warning p-2">
+                                                                    <!-- <span class="badge badge-pill badge-warning p-2">
 
                                                                     </span>
 
@@ -146,15 +147,16 @@ echo view('home_layouts/header');
 
                                                                     <span class="badge badge-pill badge-danger p-2">
 
-                                                                    </span>
+                                                                    </span> -->
 
 
 
                                                                 </td>
-                                                                <td>₱
+                                                                <td>₱ <?= $order_list['p_price'] * $order_list['o_quantity'] . '.00' ?>
                                                                 </td>
 
                                                             </tr>
+                                                            <?php endforeach; ?>
 
                                                         </tbody>
                                                     </table>
@@ -178,22 +180,21 @@ echo view('home_layouts/header');
                                                     <?php endif; ?>
                                                     <?= form_open('/updateProfile'); ?>
                                                     <div class="row">
-                                                        <div class="col-lg-6">
+                                                        <div class="col-lg-12">
                                                             <div class="single-input-item">
-                                                                <label for="first-name" class="required">First
-                                                                    Name</label>
-                                                                <input type="text" name="firstname" id="first-name"
-                                                                    value="<?= session()->get('firstname'); ?>" />
+                                                                <label for="first-name" class="required">                                                                    Name</label>
+                                                                <input type="text" name="fullname" id="first-name"
+                                                                    value="<?= session()->get('fullname'); ?>" />
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6">
+                                                        <!-- <div class="col-lg-6">
                                                             <div class="single-input-item">
                                                                 <label for="last-name">Last
                                                                     Name</label>
                                                                 <input type="text" name="lastname" id="last-name"
                                                                     value="<?= session()->get('lastname'); ?>" />
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                     <div class="single-input-item">
                                                         <label for="email" name="email_add">Email Addres</label>

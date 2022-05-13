@@ -249,6 +249,7 @@ input[type=number] {
                                 </thead>
                                 <tbody>
 
+                                <?php foreach ($addToCart_lists as $key => $addToCart_list) : ?>
                                     <tr class="tbody-item">
                                         <td class="product-select">
                                             <input type="checkbox" id="select" data-id="" data-pro="" name="select">
@@ -256,22 +257,22 @@ input[type=number] {
                                         <td class="product-remove">
                                             <a href="" class="remove" data-id="" id="removeTr">×</a>
                                         </td>
-                                        <input type="hidden" id="cart_id" value="">
+                                        <!-- <input type="text" id="cart_id" value=""> -->
                                         <td class="product-thumbnail">
                                             <div class="thumb">
                                                 <a href="single-product.html">
-                                                    <img src="../uploads/" width="75" height="75" alt="Image-HasTech">
+                                                    <img src="/uploads/<?= $addToCart_list['p_thumbnail'] ?>" width="75" height="75" alt="Image-HasTech">
                                                 </a>
                                             </div>
                                         </td>
                                         <td class="product-name">
-                                            <a class="title" id="product_name"></a>
+                                            <a class="title" id="product_name"><?= $addToCart_list['p_name'] ?></a>
                                         </td>
                                         <td class="product-price">
-                                            <span class="price" id="p_price" data-price="">₱ </span>
+                                            <span class="price" id="p_price" data-price="<?= $addToCart_list['p_price'] ?>">₱ <?= $addToCart_list['p_price'] ?></span>
                                         </td>
                                         <td class="product-quantity">
-                                            <input type="text" class="quantity" value="" id="setQuantity"
+                                            <input type="text" class="quantity" data-atc_id="<?= $addToCart_list['atc_id'] ?>" value="<?= $addToCart_list['atc_quantity'] ?>" id="setQuantity"
                                                 title="Quantity">
 
                                         </td>
@@ -279,6 +280,7 @@ input[type=number] {
                                             <span class="price" id="totalPrice">0.00</span>
                                         </td>
                                     </tr>
+                                    <?php endforeach; ?>
 
                                     <tr class="tbody-item-actions">
                                         <td colspan="7">
@@ -391,21 +393,22 @@ $("#time-select").on("click", "button", function() {
 
 
 <script>
-$('#cartTable').on('click', '#removeTr', function() {
-    const id = $(this).data('id');
-    // $(this).clos.remove();
-    $.post("/deleteCart", {
-            cart_id: id,
-        },
-        function(data, status) {
-            location.href = "/cart";
-        });
+// $('#cartTable').on('click', '#removeTr', function() {
+//     const id = $(this).data('id');
+//     // $(this).clos.remove();
+//     $.post("/deleteCart", {
+//             cart_id: id,
+//         },
+//         function(data, status) {
+//             location.href = "/cart";
+//         });
 
-});
+// });
 </script>
 
 
 <script>
+
 $("#cartTable").find('tr').each(function() {
     $("#cartTable").find('tr').each(function() {
         var currentRow = $(this);
@@ -434,153 +437,150 @@ $('#cartTable').on('change', '#setQuantity', function() {
 });
 
 var data = [];
-var getname = [];
+// var getname = [];
 $('#update_cart').click(function() {
 
     data.length = 0;
     $('#cartTable tr').each(function() {
 
-        var cart_id = $(this).find('#cart_id').val();
+        var cart_id = $(this).find('#setQuantity').data('atc_id');
         var quantity = $(this).find('#setQuantity').val();
         var postdata = {
-            id: cart_id,
-            quantity: quantity,
+            atc_id : cart_id,
+            atc_quantity: quantity,
         };
         data.push(postdata);
-
         data.slice(1);
 
-
     });
+    console.log(data);
     $.post("/updateCart", {
             data: data.filter(Boolean),
         },
         function(data, status) {
-            // alert("Data: " + data + "\nStatus: " + status);
-            location.href = "/cart";
-            getListCheckOut()
+           location.href = '/home-cart';
         });
 })
 
-$('#checkOutBtn').click(function(e) {
-    e.preventDefault();
-    var form_data = new FormData($('#submitCart')[0]);
-    const date = $('input[name=date_pickup]').val()
-    const time = $('input[name="time"]:checked').val()
+// $('#checkOutBtn').click(function(e) {
+//     e.preventDefault();
+//     var form_data = new FormData($('#submitCart')[0]);
+//     const date = $('input[name=date_pickup]').val()
+//     const time = $('input[name="time"]:checked').val()
 
 
-    var selected = [];
-    var idSelected = [];
-    selected.splice(0, selected.length)
-    $('#cartTable input[name="select"]:checked').each(function() {
-        var postdata = {
-            fid: $(this).data('id'),
-            pickup_date: date,
-            time: time,
-            order_status: "Pending"
-        };
-        var postdata2 = {
-            id: $(this).data('id'),
-            status: 1
+//     var selected = [];
+//     var idSelected = [];
+//     selected.splice(0, selected.length)
+//     $('#cartTable input[name="select"]:checked').each(function() {
+//         var postdata = {
+//             fid: $(this).data('id'),
+//             pickup_date: date,
+//             time: time,
+//             order_status: "Pending"
+//         };
+//         var postdata2 = {
+//             id: $(this).data('id'),
+//             status: 1
 
-        };
-        idSelected.push(postdata2);
-        selected.push(postdata);
-    });
-
-
-    $.post("/insertCart", {
-            data: selected.filter(Boolean),
-        },
-        function(data, status) {
-            $.ajax({
-                url: '/uploadRefCheckout',
-                type: "post",
-                data: form_data,
-                processData: false,
-                contentType: false,
-                success: function(data) {
-                    var obj = jQuery.parseJSON(data);
-                    var finald = [];
-                    finald.slice(0, finald.length);
-                    $('#cartTable input[name="select"]:checked').each(function() {
-                        var finaldata = {
-                            fid: $(this).data('id'),
-                            reference_app: obj.reference_app,
-                            reference_sms: obj.reference_sms,
-                            reference_input: obj.reference_input
-                        };
-                        finald.push(finaldata);
-                    });
-
-                    $.post("/insertToGcashTable", {
-                            data: finald,
-                        },
-                        function(data, status) {
-                            //alert("Data: " + data + "\nStatus: " + status);
-                        });
+//         };
+//         idSelected.push(postdata2);
+//         selected.push(postdata);
+//     });
 
 
+//     $.post("/insertCart", {
+//             data: selected.filter(Boolean),
+//         },
+//         function(data, status) {
+//             $.ajax({
+//                 url: '/uploadRefCheckout',
+//                 type: "post",
+//                 data: form_data,
+//                 processData: false,
+//                 contentType: false,
+//                 success: function(data) {
+//                     var obj = jQuery.parseJSON(data);
+//                     var finald = [];
+//                     finald.slice(0, finald.length);
+//                     $('#cartTable input[name="select"]:checked').each(function() {
+//                         var finaldata = {
+//                             fid: $(this).data('id'),
+//                             reference_app: obj.reference_app,
+//                             reference_sms: obj.reference_sms,
+//                             reference_input: obj.reference_input
+//                         };
+//                         finald.push(finaldata);
+//                     });
 
-
-                }
-            });
-
-        });
-
-    $.post("/updateCardtoCheckout", {
-            data: idSelected.filter(Boolean),
-        },
-        function(data, status) {
-            // alert("Data: " + data + "\nStatus: " + status);
-            location.href = "/cart";
-        });
-
-});
-
-
-$('#cartTable').on('click', '#select', function() {
-    getListCheckOut();
-});
-
-
-function getListCheckOut() {
-    getname.splice(0, getname.length)
-    $('#listcheckoutitem').empty()
-    $('#cartTable input[name="select"]:checked').each(function() {
-        var getPrice = $(this).closest('tr').find('#p_price').data('price');
-        var getQuantity = $(this).closest('tr').find('#setQuantity').val();
-        var postdata = {
-            product_name: $(this).data('pro'),
-            totalPrice: getPrice * getQuantity
-        };
-        getname.push(postdata);
-    });
-
-    $.each(getname, function(index, value) {
-        $('#listcheckoutitem').append('<tr class="order-total"><th></th><th>Product Name: ' + value
-            .product_name + ' </th><td><span class="amount">₱ ' + value.totalPrice + '</span></td></tr>');
-    });
-
-    //             $.each(getname, function(index, value) {
-    //                 var total = 0;
-    //                  console.log(total + value.totalPrice);
-    // // for (var i = 0; i < index.length; i++) {
-    // //     console.log(value.totalPrice + );
-    // // }
-
-    //             });
-
-    var total = 0;
-    for (var i = 0; i < getname.length; i++) {
-        total += getname[i].totalPrice;
-    }
-    $('.totalCartPrice').html("<h2>TOTAL : </h2>" + "<h2 class='display-4 font-weight-bold'>₱" + total + "</h2>");
+//                     $.post("/insertToGcashTable", {
+//                             data: finald,
+//                         },
+//                         function(data, status) {
+//                             //alert("Data: " + data + "\nStatus: " + status);
+//                         });
 
 
 
 
-}
+//                 }
+//             });
+
+//         });
+
+//     $.post("/updateCardtoCheckout", {
+//             data: idSelected.filter(Boolean),
+//         },
+//         function(data, status) {
+//             // alert("Data: " + data + "\nStatus: " + status);
+//             location.href = "/cart";
+//         });
+
+// });
+
+
+// $('#cartTable').on('click', '#select', function() {
+//     getListCheckOut();
+// });
+
+
+// function getListCheckOut() {
+//     getname.splice(0, getname.length)
+//     $('#listcheckoutitem').empty()
+//     $('#cartTable input[name="select"]:checked').each(function() {
+//         var getPrice = $(this).closest('tr').find('#p_price').data('price');
+//         var getQuantity = $(this).closest('tr').find('#setQuantity').val();
+//         var postdata = {
+//             product_name: $(this).data('pro'),
+//             totalPrice: getPrice * getQuantity
+//         };
+//         getname.push(postdata);
+//     });
+
+//     $.each(getname, function(index, value) {
+//         $('#listcheckoutitem').append('<tr class="order-total"><th></th><th>Product Name: ' + value
+//             .product_name + ' </th><td><span class="amount">₱ ' + value.totalPrice + '</span></td></tr>');
+//     });
+
+//     //             $.each(getname, function(index, value) {
+//     //                 var total = 0;
+//     //                  console.log(total + value.totalPrice);
+//     // // for (var i = 0; i < index.length; i++) {
+//     // //     console.log(value.totalPrice + );
+//     // // }
+
+//     //             });
+
+//     var total = 0;
+//     for (var i = 0; i < getname.length; i++) {
+//         total += getname[i].totalPrice;
+//     }
+//     $('.totalCartPrice').html("<h2>TOTAL : </h2>" + "<h2 class='display-4 font-weight-bold'>₱" + total + "</h2>");
+
+
+
+
+// }
 </script>
 
 

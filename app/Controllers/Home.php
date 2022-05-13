@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\AddToCart;
 use App\Models\User;
 use App\Models\Products;
 use App\Models\Adoption;
+use App\Models\OrderProducts;
 
 class Home extends BaseController
 {
@@ -21,11 +23,19 @@ class Home extends BaseController
     }
 
     public function profile() {
-        return view('profile');
+        $orderProducts = new OrderProducts();
+        $user = new User();
+        $data['user_infos'] = $user->where('id',session()->get('id'))->first();
+        // SELECT * FROM `order_products` INNER JOIN products ON order_products.p_id = products.id WHERE order_products.u_id = '6'
+        $data['order_lists'] = $orderProducts->select('*')->join('products','order_products.p_id = products.id')->where('order_products.u_id',session()->get('id'))->findAll();
+       
+        return view('profile',$data);
     }
 
     public function cart() {
-        return view('cart');
+        $addtoCart = new AddToCart();
+        $data['addToCart_lists'] = $addtoCart->select('*')->join('products','o_add_to_cart.p_id = products.id')->where('o_add_to_cart.u_id',session()->get('id'))->findAll();
+        return view('cart',$data);
     }
 
      // Start for Product Home Page 

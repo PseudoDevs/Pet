@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class User extends Model
+class AddToCart extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
+    protected $table            = 'o_add_to_cart';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,7 +15,8 @@ class User extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'username', 'email','password', 'fullname', 'role', 'status'];
+        'p_id', 'atc_quantity', 'u_id','atc_status'
+    ];
 
     // Dates
     protected $useTimestamps = false;
